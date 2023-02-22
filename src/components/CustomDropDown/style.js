@@ -1,11 +1,8 @@
 import { StyleSheet } from 'react-native';
 import { Theme } from '../../utils/theme';
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: Theme.white,
-    },
-    DropDowncontainer: {
+   DropDowncontainer: {
         flexDirection: 'row',
         alignItems: 'center',
         alignSelf: 'center',
@@ -16,22 +13,23 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         borderColor: 'lightgrey',
         borderWidth: 1.5,
-        top: 50,
-        height: 50,
-        shadowOffset: { width: 1, height: 1 },
-        shadowOpacity: 0.2
+        top: 50
     },
-    dropDownContainerStyle: {
-        borderColor: 'grey',
-        borderWidth: 0.3,
-        borderTopColor: 'transparent'
+    label: {
+        justifyContent: 'flex-start',
+        fontSize: 16,
     },
-   dropdownStyle: {
-        borderColor:'transparent',
-    backgroundColor:'transparent'
-}
-
-
-
+    pickerContainer: {
+        flex: 2,
+        height: 40,
+        marginHorizontal: 10,
+    },
+    pickerItem: {
+        justifyContent: 'flex-start',
+    },
+    pickerLabel: {
+        fontSize: 16,
+    },
 });
+
 export default styles;

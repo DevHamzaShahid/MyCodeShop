@@ -5,5 +5,12 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Theme.white,
     },
+    text: {
+        fontWeight: 'bold',
+        fontSize: 15,
+        alignSelf: 'center',
+        bottom: 60,
+        position: 'absolute'
+    }
 });
 export default styles;

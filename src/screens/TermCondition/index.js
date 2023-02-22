@@ -7,6 +7,9 @@ const TermCondition = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <DrawerHeader navigation={navigation} name={'Term & Condition'} />
+            <Text style={styles.text}>
+                Privacy Policy
+            </Text>
         </View>
     )
 }
