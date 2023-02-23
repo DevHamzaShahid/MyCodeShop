@@ -51,7 +51,8 @@ const MainHeader = memo(({ navigation, path }) => {
                     <Text style={styles.header_circle_text}>Receive</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.header_icon_circle}>
+                <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.BuyshopCoin)
+                } style={styles.header_icon_circle}>
                     <View style={[styles.header_icon_circle_inner, { backgroundColor: Theme.light_red }]}>
                         <Image
                             source={require('../../assets/plus.png')}

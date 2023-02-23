@@ -19,7 +19,8 @@ const ROUTES = {
   TermCondition: 'TermCondition',
   PrivacyPolicy: 'PrivacyPolicy',
   Send: "Send",
-  SendConfirmation: 'SendConfirmation'
+  SendConfirmation: 'SendConfirmation',
+  BuyshopCoin:'BuyShopCoin'
 };
 
 export default ROUTES;

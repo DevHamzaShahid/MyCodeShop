@@ -7,6 +7,7 @@ import BarcodeScreen from '../screens/Barcode';
 import ViewBusiness from '../screens/ViewBusiness';
 import SendScreen from '../screens/Send';
 import SendConfirmation from '../screens/SendConfirmation'
+import BuyShopCoin from '../screens/BuyShopCoin.js';
 const Stack = createStackNavigator();
 const AuthStack = () => {
     return (
@@ -43,6 +44,11 @@ const AuthStack = () => {
             <Stack.Screen
                 name={ROUTES?.SendConfirmation}
                 component={SendConfirmation}
+                options={{ headerShown: false }}
+            />
+             <Stack.Screen
+                name={ROUTES?.BuyshopCoin}
+                component={BuyShopCoin}
                 options={{ headerShown: false }}
             />
         </Stack.Navigator>
