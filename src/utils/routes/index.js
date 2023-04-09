@@ -20,7 +20,16 @@ const ROUTES = {
   PrivacyPolicy: 'PrivacyPolicy',
   Send: "Send",
   SendConfirmation: 'SendConfirmation',
-  BuyshopCoin:'BuyShopCoin'
+  BuyshopCoin: 'BuyShopCoin',
+  Discount: "Discount",
+  Interest: "Interest",
+  AddList: "AddList",
+  Home: "Home",
+  BuyNow: "BuyNow",
+  AddShopDeal: "AddShopDeal",
+  AddInterest: "AddInterest",
+  Level: "Level",
+  Transaction: "Transaction"
 };
 
 export default ROUTES;

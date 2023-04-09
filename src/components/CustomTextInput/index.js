@@ -25,10 +25,11 @@ const CustomTextInput = memo(
     rightIcon,
     maskType,
     callBack,
+    style
   }) => {
     const [secure, setSecure] = useState(true);
     return (
-      <View style={[containerStyle]}>
+      <View style={[containerStyle,style]}>
         <View
           style={[
             styles.defaultInputContainerStyle,

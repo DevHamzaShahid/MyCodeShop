@@ -6,7 +6,9 @@ import {Theme} from './src/utils/theme';
 import {NavigationContainer} from '@react-navigation/native';
 import {navigationRef, isReadyRef, routeNameRef} from './RootNavigation';
 import SplashScreen from 'react-native-splash-screen';
+
 const App = () => {
+
   useEffect(() => {
     SplashScreen.hide();
   }, []);

@@ -7,7 +7,7 @@ import { Theme } from '../../utils/theme';
 import styles from './style';
 const AuthScreen = () => {
     const Login = () => {
-        navigate(ROUTES.Dashboard)
+        navigate(ROUTES.Discount)
     }
     return (
         <View style={styles.contain}>
