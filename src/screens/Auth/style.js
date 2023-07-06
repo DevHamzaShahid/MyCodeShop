@@ -7,11 +7,20 @@ const styles = StyleSheet.create({
         backgroundColor: Theme.white
     },
     container_inner: {
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop:"15%"
     },
     logoBox: {
-        width: width_screen * 0.28,
-        height: height_screen * 0.2,
-    }
+        width: width_screen * 0.30,
+        height: height_screen * 0.23,
+    },
+    text:{
+        fontSize:22,
+        fontWeight:'600',
+        color:Theme.black
+    },
+    buttonView: {
+        alignItems: 'center',
+    },
 })
 export default styles;

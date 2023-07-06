@@ -1,0 +1,109 @@
+import { View, Text, FlatList, TouchableOpacity, StatusBar } from 'react-native'
+import React, { useEffect } from 'react'
+import { Theme } from '../../utils/theme'
+import CustomButton from '../../components/CustomButton'
+import { navigate } from '../../../RootNavigation'
+import ROUTES from '../../utils/routes'
+import styles from './style'
+import { useIsFocused } from '@react-navigation/core'
+const interest = [
+    {
+        id: '0',
+        name: 'Fashion', selected: true
+    }, {
+        id: '1',
+        name: 'Beauty', selected: false
+    }, {
+        id: '2',
+        name: 'Yoga', selected: true
+    }, {
+        id: '3',
+        name: 'Travel', selected: true
+    }, {
+        id: '4',
+        name: 'DYI', selected: true
+    }, {
+        id: '5',
+        name: 'Free Stuff', selected: false
+    }, {
+        id: '6',
+        name: 'Jewelries', selected: true
+    }, {
+        id: '7',
+        name: 'Fragrances', selected: false
+    }, {
+        id: '8',
+        name: 'Pet', selected: true
+    }, {
+        id: '9',
+        name: 'Gaming', selected: false
+    }, {
+        id: '10',
+        name: 'Organic', selected: true
+    }, {
+        id: '11',
+        name: 'Sport', selected: true
+    }, {
+        id: '12',
+        name: 'Shoes', selected: false
+    }, {
+        id: '13',
+        name: 'Skin Care', selected: true
+    }, {
+        id: '14',
+        name: 'Gifting', selected: false
+    }, {
+        id: '15',
+        name: 'Health', selected: true
+    }, {
+        id: '16',
+        name: 'Food', selected: true
+    }, {
+        id: '17',
+        name: 'Sport', selected: false
+    }, {
+        id: '18',
+        name: 'Maternity', selected: true
+    }, {
+        id: '19',
+        name: 'Electronics', selected: false
+    }
+]
+const ChooseInterest = () => {
+    const isfocused=useIsFocused()
+
+    // useEffect(()=>{
+    //     StatusBar.setBarStyle('dark-content');
+    //     StatusBar.setBackgroundColor(Theme.white);
+    // },[isfocused])
+    return (
+        <View style={styles.container}>
+            <Text style={styles.textHeader}>
+                Choose your top 5 interests and get the best offers recommendations.
+            </Text>
+            <View style={styles.listContainer}>
+                {interest.map((item) => {
+                    return (
+                        <TouchableOpacity style={[styles.itemContainer,{backgroundColor: item.selected ? Theme.appRed : Theme.white}]}>
+                            <Text style={[styles.itemText,{color: item.selected ? Theme.white : Theme.appRed,}]}>{item.name}</Text>
+                        </TouchableOpacity>
+                    )
+                })}
+            </View>
+            <View style={styles.buttonContainer}>
+                <CustomButton
+                    onClick={() => navigate(ROUTES.AddList)}
+                    containerStyle={styles.buttonContainerLogin}
+                    title={'Next'}
+                    textStyle={styles.buttonTextLogin}
+                    buttonWidth="100%"
+                    buttonHeight={40}
+                    // loading={loading}
+                    loadingSize={10}
+                />
+            </View>
+        </View>
+    )
+}
+
+export default ChooseInterest

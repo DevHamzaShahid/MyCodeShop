@@ -29,7 +29,25 @@ const ROUTES = {
   AddShopDeal: "AddShopDeal",
   AddInterest: "AddInterest",
   Level: "Level",
-  Transaction: "Transaction"
+  Transaction: "Transaction",
+  YourCode: "YourCode",
+  ChooseInterest: "ChooseInterest",
+  OpenProduct: "OpenProduct",
+  AddShop: 'AddShop',
+  Profile: 'Profile',
+  YourLevel: 'YourLevel',
+  EditProfile: 'EditProfile',
+  BuisnessRegistration: 'BuisnessRegistration',
+  BuisnessRegistration2: "BuisnessRegistration2",
+  BuisnessRegistration3: "BuisnessRegistration3",
+  AdminDashboard: "AdminDashboard",
+  BuisnessHome: "BuisnessHome",
+  CreateOffer: "CreateOffer",
+  AudiancePreference: "AudiancePreference",
+  AudianceInterest: "AudianceInterest",
+  Followers: "Followers",
+  BuisnessAccount: "BuisnessAccount",
+  CompanyProfile: "CompanyProfile"
 };
 
 export default ROUTES;

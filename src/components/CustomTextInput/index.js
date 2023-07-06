@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, TextInput as Input } from 'react-native';
 import MaskInput from 'react-native-mask-input';
 import styles from './style';
 import { Theme } from '../../utils/theme';
-
+import SV from '../../assets/Tab_plus.svg'
 const CustomTextInput = memo(
   ({
     value,
@@ -25,17 +25,24 @@ const CustomTextInput = memo(
     rightIcon,
     maskType,
     callBack,
+    leftIcon,
     style
   }) => {
     const [secure, setSecure] = useState(true);
     return (
-      <View style={[containerStyle,style]}>
+      <View style={[containerStyle, style]}>
         <View
           style={[
             styles.defaultInputContainerStyle,
             { ...inputContainerStyle },
             error ? styles.errorBorder : null,
           ]}>
+          {/* leftIcon */}
+          {leftIcon ? (
+            <TouchableOpacity disabled={true} style={styles.iconStyle}>
+             {leftIcon}
+            </TouchableOpacity>
+          ) : null}
           {maskType ? (
             <MaskInput
               style={
@@ -80,6 +87,7 @@ const CustomTextInput = memo(
               ]}
             />
           ) : (
+
             <Input
               style={
                 isSecure || rightIcon
@@ -98,7 +106,7 @@ const CustomTextInput = memo(
               numberOfLines={numberOfLines}
               keyboardType={keyboardType ? keyboardType : 'default'}
               placeholder={placeHolderText ? placeHolderText : 'Fill Field'}
-              placeholderTextColor={Theme.black}
+              placeholderTextColor={'#9E9E9E'}
               value={value}
               secureTextEntry={isSecure ? secure : false}
               autoCapitalize={'none'}
@@ -118,9 +126,9 @@ const CustomTextInput = memo(
               )}
             </TouchableOpacity>
           ) : null} */}
-          {rightIcon ? (
+          {true ? (
             <TouchableOpacity disabled={true} style={styles.iconStyle}>
-              {rightIcon}
+             {rightIcon}
             </TouchableOpacity>
           ) : null}
         </View>

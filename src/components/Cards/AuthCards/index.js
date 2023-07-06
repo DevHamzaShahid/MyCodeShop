@@ -1,5 +1,5 @@
 import React, { memo, useState, useRef } from 'react';
-import { Text, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { Field, Formik } from 'formik';
 import * as Yup from 'yup';
 import CustomTextInput from '../../CustomTextInput';
@@ -7,6 +7,14 @@ import CustomButton from '../../CustomButton';
 import styles from './style';
 import { height_screen } from '../../../utils/dimensions';
 import PhoneInput from "react-native-phone-number-input";
+import Email from '../../../assets/svg/fadeEmail.svg'
+import Password from '../../../assets/svg/fadeLock.svg'
+import Eye from '../../../assets/svg/fadeEye.svg'
+import Uncheck from '../../../assets/svg/uncheck.svg'
+import YourCode from '../../../screens/yourCode';
+import { navigate } from '../../../../RootNavigation';
+import ROUTES from '../../../utils/routes';
+import { Theme } from '../../../utils/theme';
 const SignInCard = memo(({ Login }) => {
     const AuthScreenSchema = Yup.object().shape({
         email: Yup.string().required('Required'),
@@ -31,13 +39,14 @@ const SignInCard = memo(({ Login }) => {
                                     <CustomTextInput
                                         onBlur={handleBlur('email')}
                                         error={meta.touched ? meta.error : null}
-                                        placeHolderText={'Enter email'}
+                                        placeHolderText={'Email'}
                                         onChangeText={handleChange('email')}
                                         containerStyle={styles.labelContainer}
                                         inputContainerStyle={styles.inputContainer}
                                         textStyle={styles.inputTextStyle}
                                         value={values.email}
                                         isSecure={false}
+                                        leftIcon={<Email />}
                                     //     rightIcon={<EMAIL_ICON height={18} width={18} />
                                     // }
                                     />
@@ -56,22 +65,45 @@ const SignInCard = memo(({ Login }) => {
                                         textStyle={styles.inputTextStyle}
                                         isSecure={true}
                                         value={values.password}
+                                        leftIcon={<Password />}
+                                        rightIcon={<Eye />}
+
                                     />
                                 )}
                             </Field>
 
+                            {/* Remember me */}
+                            <View style={styles.rememberContainer}>
+                                <Uncheck />
+                                <Text style={styles.rememberMe}>
+                                    Remember me
+                                </Text>
+                            </View>
                         </View>
                         <View style={styles.buttonView}>
                             <CustomButton
-                                onClick={() => Login()}
+                                onClick={() => navigate(ROUTES.YourCode)}
                                 containerStyle={styles.buttonContainerLogin}
-                                title={'LogIn'}
+                                title={'Continue'}
                                 textStyle={styles.buttonTextLogin}
                                 buttonWidth="100%"
                                 buttonHeight={40}
                                 // loading={loading}
                                 loadingSize={10}
                             />
+                        </View>
+                        <View style={styles.bottomContainer}>
+                            <Text style={{fontWeight:'500',color:Theme.black}}>Forgot the password?</Text>
+                            <View style={styles.bottomInner}>
+                                <Text style={{color:'#757575',paddingEnd:5}}>
+                                    Business owner?
+                                </Text>
+                                <TouchableOpacity>
+                                    <Text style={{ color: '#F47257',fontWeight:'600' }}>
+                                        Click here
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
                 )}

@@ -56,18 +56,18 @@ const DrawerNavigation = () => {
         name={ROUTES.EarnShopcoin}
         component={EarnShopCoin}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name={ROUTES.Notification}
         component={Notification}
-      />
+      /> */}
       <Drawer.Screen
         name={ROUTES.AppLanguage}
         component={AppLanguage}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name={ROUTES.Security}
         component={Security}
-      />
+      /> */}
       <Drawer.Screen
         name={ROUTES.About}
         component={About}
@@ -76,10 +76,10 @@ const DrawerNavigation = () => {
         name={ROUTES.Chat}
         component={Chat}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name={ROUTES.FAQ}
         component={FAQ}
-      />
+      /> */}
       <Drawer.Screen
         name={ROUTES.ContactUs}
         component={ContactUs}

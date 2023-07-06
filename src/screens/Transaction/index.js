@@ -1,161 +1,143 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-import { DrawerHeader } from '../../components/Header';
-
-const { width } = Dimensions.get('window');
-const ITEM_WIDTH = width * 0.9;
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
+import CustomTextInput from '../../components/CustomTextInput';
+import SearchIcon from '../../assets/svg/search_grey.svg';
+import Filter from '../../assets/svg/filter.svg';
+import styles from './style';
+import Icon from '../../assets/svg/lapp.svg'
+import { Theme } from '../../utils/theme';
 const data = [
     {
-        thumb: 'https://example.com/thumb1.png',
         Id: '1234',
         offertype: 'Discount',
-        productname: 'Product 1',
-        date: '2022-04-09',
+        productname: 'Mac Book Pro',
+        date: 'Jan 14, 2023',
+        icon: Icon,
+        price: '1200£'
     },
     {
-        thumb: 'https://example.com/thumb2.png',
-        Id: '5678',
+        Id: '56738',
         offertype: 'Coupon',
-        productname: 'Product 2',
-        date: '2022-04-08',
+        productname: 'Mac Book Pro',
+        date: 'Jan 14, 2023',
+        icon: Icon,
+        price: '1200£'
     },
     {
-        thumb: 'https://example.com/thumb3.png',
+        Id: '90132',
+        offertype: 'Deal',
+        productname: 'Mac Book Pro',
+        date: 'Jan 14, 2023',
+        icon: Icon,
+        price: '1200£'
+    },
+    {
+        Id: '12344',
+        offertype: 'Discount',
+        productname: 'Mac Book Pro',
+        date: 'Jan 14, 2023',
+        icon: Icon,
+        price: '1200£'
+    },
+    {
+        Id: '56758',
+        offertype: 'Coupon',
+        productname: 'Mac Book Pro',
+        date: 'Jan 14, 2023',
+        icon: Icon,
+        price: '1200£'
+    },
+    {
         Id: '9012',
         offertype: 'Deal',
-        productname: 'Product 3',
-        date: '2022-04-07',
+        productname: 'Mac Book Pro',
+        date: 'Jan 14, 2023',
+        icon: Icon,
+        price: '1200£'
+    },
+    {
+        Id: '123c4',
+        offertype: 'Discount',
+        productname: 'Mac Book Pro',
+        date: 'Jan 14, 2023',
+        icon: Icon,
+        price: '1200£'
+    },
+    {
+        Id: '56c78',
+        offertype: 'Coupon',
+        productname: 'Mac Book Pro',
+        date: 'Jan 14, 2023',
+        icon: Icon,
+        price: '1200£'
+    },
+    {
+        Id: '90ed12',
+        offertype: 'Deal',
+        productname: 'Mac Book Pro',
+        date: 'Jan 14, 2023',
+        icon: Icon,
+        price: '1200£'
     },
 ];
 
-const Transaction = ({ navigation }) => {
-    const renderTransactionItem = (item) => {
-        return (
-            <TouchableOpacity style={styles.itemContainer}>
-                <View style={styles.column}>
-                    <Image style={styles.thumb} source={require('../../assets/coin.png')} />
-                </View>
-                <View style={styles.column}>
-                    <Text style={styles.id}>{item.Id}</Text>
-                </View>
-                <View style={styles.column}>
-                    <Text style={styles.offertype}>{item.offertype}</Text>
-                </View>
-                <View style={styles.column}>
-                    <Text style={styles.productname}>{item.productname}</Text>
-                </View>
-                <View style={styles.column}>
-                    <Text style={styles.date}>{item.date}</Text>
-                </View>
-                <View style={[styles.column, styles.downloadButtonContainer]}>
-                    <TouchableOpacity style={styles.downloadButton}>
-                        <Text style={styles.downloadButtonText}>Download</Text>
-                    </TouchableOpacity>
-                </View>
-            </TouchableOpacity>
-        );
-    };
-
+const Transaction = () => {
+const [value,setValue]=useState('')
     return (
-        <>
-            <DrawerHeader navigation={navigation} name={'Transactions'} />
-            <View style={styles.container}>
-                <View style={styles.headerContainer}>
-                    <View style={[styles.column, styles.headerColumn]}>
-                        <Text style={styles.headerText}>Thumb</Text>
-                    </View>
-                    <View style={[styles.column, styles.headerColumn]}>
-                        <Text style={styles.headerText}>Id</Text>
-                    </View>
-                    <View style={[styles.column, styles.headerColumn]}>
-                        <Text style={styles.headerText}>Offer Type</Text>
-                    </View>
-                    <View style={[styles.column, styles.headerColumn]}>
-                        <Text style={styles.headerText}>Product Name</Text>
-                    </View>
-                    <View style={[styles.column, styles.headerColumn]}>
-                        <Text style={styles.headerText}>Date</Text>
-                    </View>
-                    <View style={[styles.column, styles.headerColumn]}>
-                        <Text style={styles.headerText}>Download</Text>
-                    </View>
-                </View>
-                {data.map((item) => renderTransactionItem(item))}
+        <View style={styles.container}>
+            <View style={{ width: '92%' }}>
+                <CustomTextInput
+                    onBlur={() => { return null }}
+                    placeHolderText={'Search'}
+                    onChangeText={() => setValue(value)}
+                    containerStyle={styles.labelContainer}
+                    inputContainerStyle={styles.inputContainer}
+                    textStyle={{ paddingLeft: 15 }}
+                    isSecure={false}
+                    // value={value}
+                    leftIcon={<SearchIcon />}
+                    rightIcon={<Filter />}
+                />
             </View>
-        </>
+            <ScrollView style={{ width: '100%' }} showsVerticalScrollIndicator={false}>
+                {
+                    data.map((item) => {
+                        return (
+                            <View style={styles.listContainer}>
+                                <View style={styles.Icon}>
+                                    <View style={{ alignItems: 'center', justifyContent: 'center', height: 60, borderRadius: 30, width: 60, backgroundColor: '#F3F3F3' }}>
+                                        <item.icon />
+                                    </View>
+                                </View>
+                                <View style={styles.itemBody}>
+                                    <Text style={styles.productName}>
+                                        {item.productname}
+                                    </Text>
+                                    <TouchableOpacity style={styles.saveButton}>
+                                        <Text style={{color:Theme.black}}>
+                                            save
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <Text style={styles.dateView}>
+                                        122456515874 | {item.date}
+                                    </Text>
+                                </View>
+                                <View style={styles.lastContainer}>
+                                    <Text style={styles.price}>
+                                        {item.price}
+                                    </Text>
+                                    <TouchableOpacity style={styles.download}>
+                                        <Text style={styles.downloadText}>
+                                            Download
+                                        </Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        )
+                    })
+                }
+            </ScrollView>
+        </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        marginTop:20
-    },
-    headerContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        width: ITEM_WIDTH,
-        paddingVertical: 16,
-        paddingHorizontal: 12,
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: '#999',
-        backgroundColor: '#DDD',
-    },
-    headerColumn: {
-        borderBottomWidth: 0,
-        justifyContent: 'center',
-    },
-    headerText: {
-        fontSize: 9,
-        fontWeight: 'bold',
-    },
-    itemContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        width: ITEM_WIDTH,
-        paddingVertical: 16,
-        paddingHorizontal: 12,
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: '#999',
-    },
-    column: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    thumb: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-    },
-    id: {
-        fontSize: 10,
-    },
-    offertype: {
-        fontSize: 10,
-    },
-    productname: {
-        fontSize: 10,
-        textAlign: 'center',
-    },
-    date: {
-        fontSize: 8,
-    },
-    downloadButtonContainer: {
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-    },
-    downloadButton: {
-        paddingHorizontal: 8,
-        paddingVertical: 4,
-        backgroundColor: '#369',
-        borderRadius: 4,
-    },
-    downloadButtonText: {
-        color: '#FFF',
-        fontSize: 8,
-    },
-});
-
-export default Transaction;
+export default Transaction

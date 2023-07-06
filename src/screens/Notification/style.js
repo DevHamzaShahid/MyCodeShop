@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
     main_text: {
         fontWeight: '600',
         fontSize: 18,
-        paddingVertical: 3
+        paddingVertical: 3,
+        color:Theme.black
     },
     bottom_text: {
         fontSize: 10

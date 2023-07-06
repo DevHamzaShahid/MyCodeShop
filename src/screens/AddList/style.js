@@ -1,33 +1,32 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
+import { height_screen, width_screen } from '../../utils/dimensions';
 import { Theme } from '../../utils/theme';
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: Theme.white,
+    container:{ flex: 1, backgroundColor: Theme.white, paddingHorizontal: 20 },
+    headerText:{ marginVertical: 20, fontSize: 16,color:Theme.black },
+    listContainer:{ flexDirection: 'row', alignItems: 'center', height: 70, borderBottomColor: '#EEEEEE', borderBottomWidth: 1 },
+    text: {
+        fontSize: 22,
+        fontWeight: '600',
+        color:Theme.black
     },
-    fieldsView: {
-        alignItems: 'center',
+    buttonContainer:{ position: 'absolute', width: '100%', bottom: 30,alignSelf:'center' },
+    buttonView: {
+        backgroundColor: "#fff",
+        height: 50,
+        marginHorizontal: '7%',
+        borderRadius:15,
     },
-    inputContainer: {
-        borderWidth: 1,
-        borderColor: Theme.grey,
-        borderRadius: 5,
-        height: 40,
+    buttonTextLogin:{
+        color:Theme.white,
+        fontWeight:'600'
     },
-    inputTextStyle: {
-        fontSize: 16,
-        lineHeight: 18,
-        color: Theme.black,
-    },
-    labelContainer: {
-        width: '80%',
-    },
-    button_container: { bottom: 5, backgroundColor: 'red', width: "95%", height: 40, alignSelf: 'center', alignItems: 'center', justifyContent: 'center' },
-    button_text: {
-        color: Theme.white,
-        fontWeight:'bold'
-    },
-    text1: { alignSelf: 'center', fontWeight: "bold", marginTop: 30, fontSize: 18 },
-    text2: { alignSelf: 'center', marginTop: 20 }
-});
+    buttonContainerLogin: {
+        backgroundColor: Theme.appRed,
+        height: 50,
+        borderRadius: 15,
+        width:'90%',
+        alignSelf:'center'
+    }
+})
 export default styles;

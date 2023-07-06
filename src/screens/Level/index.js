@@ -24,7 +24,7 @@ const Level = ({ navigation }) => {
                             value={value}
                             onValueChange={(val) => setValue(val)}
                             minimumTrackTintColor="#F8AF12"
-                            maximumTrackTintColor="##F8AF12"
+                            maximumTrackTintColor="#F8AF12"
                             thumbTintColor="#F8AF12"
                             thumbProps={{
                                 children: (

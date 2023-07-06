@@ -1,37 +1,47 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, TouchableOpacity } from 'react-native'
 import CustomDropDown from '../../components/CustomDropDown';
 import { DrawerHeader } from '../../components/Header';
 import { Theme } from '../../utils/theme';
 import styles from './style';
-const FAQ = ({ navigation }) => {
+import Arrow from '../../assets/svg/bottom_arrow.svg'
+
+const ListItem = ({ title }) => {
+    const [expanded, setExpanded] = useState(false);
+
+    const toggleExpand = () => {
+        setExpanded(!expanded);
+    };
+
+    return (
+        <View>
+            <TouchableOpacity style={styles.listUpperContainer} onPress={toggleExpand}>
+                <Text style={styles.listText}>{title}</Text>
+                <Arrow />
+            </TouchableOpacity>
+
+            {expanded && (
+                <>
+                    <View style={styles.modalContainer}>
+                        <Text style={{color:Theme.black}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+                    </View>
+                </>
+            )}
+        </View>
+    );
+};
+
+const FAQ = () => {
+    const listItems = ['Question 01 ?', 'Question 02 ?', 'Question 03 ?', 'Question 04 ?', 'Question 05 ?'];
     return (
         <View style={styles.container}>
-            <DrawerHeader navigation={navigation} name={'FAQ'} />
-            <Text style={{ alignSelf: 'center', marginTop: 50, marginBottom: 20, fontSize: 15 }}>
-                Frequently Asked Questions (FAQ)
-            </Text>
-            <CustomDropDown customItems={[
-                { value: '1', label: 'How are you' },
-                { value: '2', label: 'How is it hanging?' },
-                { value: '3', label: 'How about game?' },
-            ]} customStyle={styles.DropdownStyle} />
-            <CustomDropDown customItems={[
-                { value: '1', label: 'How are you' },
-                { value: '2', label: 'How is it hanging?' },
-                { value: '3', label: 'How about game?' },
-            ]} customStyle={styles.DropdownStyle} />
-            <CustomDropDown customItems={[
-                { value: '1', label: 'How are you' },
-                { value: '2', label: 'How is it hanging?' },
-                { value: '3', label: 'How about game?' },
-            ]} customStyle={styles.DropdownStyle} />
-            <CustomDropDown customItems={[
-                { value: '1', label: 'How are you' },
-                { value: '2', label: 'How is it hanging?' },
-                { value: '3', label: 'How about game?' },
-            ]} customStyle={styles.DropdownStyle} />
+            {listItems.map((item, index) => (
+                <>
+                    <ListItem key={index} title={item} />
+                </>
+            ))}
         </View>
-    )
-}
+    );
+};
+
 export default FAQ;

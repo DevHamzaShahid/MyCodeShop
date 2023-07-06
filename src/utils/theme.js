@@ -4,7 +4,7 @@ import Menu from '../assets/menu.svg'
 export const Theme = {
     //default colors
     white: '#ffffff',
-    black: '#191919',
+    black: '#000000',
     light_red: '#fb090c',
     dark_orange: '#f24627',
     grey: '#d1d1d1',
@@ -12,6 +12,7 @@ export const Theme = {
     header_color: '#ffd67d',
     header_text_color: '#824c09',
     transparent: 'rgba(255,255,255, 0.1)',
+    appRed:'#F14825',
 
     //Images SVG
     ImageArea,

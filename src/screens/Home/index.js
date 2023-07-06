@@ -1,202 +1,157 @@
-import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import { Theme } from '../../utils/theme';
+import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native'
+import React, { useState } from 'react'
+import { Theme } from '../../utils/theme'
+import styles from './style'
+import Bell from '../../assets/svg/bell.svg'
+import QR from '../../assets/svg/qr-code.svg'
+import Scan from '../../assets/svg/Scan.svg'
 import CustomTextInput from '../../components/CustomTextInput';
-import { useFocusEffect } from '@react-navigation/core';
-import { navigate } from '../../../RootNavigation';
+import SearchIcon from '../../assets/svg/search_grey.svg';
+import Filter from '../../assets/svg/filter.svg';
+import CouponCard from "../../assets/svg/cardCoupon.svg"
+import { validateYupSchema } from 'formik';
+import Booking from '../../assets/svg/Booking.com.svg';
+import Apple from '../../assets/svg/apple.svg';
+import McDonald from '../../assets/svg/McDonald.svg';
+import eclipse from '../../assets/svg/elipse.svg';
+import ComUniverse from '../../assets/svg/computeruniverse.svg';
+import LaptopIcon from '../../assets/svg/laptopIcon.svg';
+import MicrosoftIcon from '../../assets/svg/MicrosoftIcon.svg'
+import Clock from '../../assets/svg/TimeCircle.svg'
+import { navigate } from '../../../RootNavigation'
 import ROUTES from '../../utils/routes';
-
-const CARD_WIDTH = '100%';
-const CARD_HEIGHT = 70;
-
-const cards = [
-    {
-        id: '1',
-        title: 'Microsoft Surface Laptop 4 13" 15',
-        description: 'Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.',
-        footer: '30% OFF',
-        footer2: 'limited offer',
-        expiry: '2:32:00'
-    },
-    {
-        id: '2',
-        title: 'Microsoft Surface Laptop 4 13" 15',
-        description: 'Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.',
-        footer: 'Price for 2',
-        footer2: 'limited offer',
-        expiry: '2:32:00'
-    },
-    {
-        id: '3',
-        title: 'Microsoft Surface Laptop 4 13" 15',
-        description: 'Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.',
-        footer: 'Buy 1 get 1',
-        footer2: 'limited offer',
-        expiry: '2:32:00'
-    },
-    {
-        id: '4',
-        title: 'Microsoft Surface Laptop 4 13" 15',
-        description: 'Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.',
-        footer: '30% OFF',
-        footer2: 'limited offer',
-        expiry: '2:32:00'
-    },
-    {
-        id: '5',
-        title: 'Microsoft Surface Laptop 4 13" 15',
-        description: 'Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.',
-        footer: 'Price for 2',
-        footer2: 'limited offer',
-        expiry: '2:32:00'
-    },
-    {
-        id: '6',
-        title: 'Microsoft Surface Laptop 4 13" 15',
-        description: 'Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.',
-        footer: 'Buy 1 get 1',
-        footer2: 'limited offer',
-        expiry: '2:32:00'
-    },
-    {
-        id: '7',
-        title: 'Microsoft Surface Laptop 4 13" 15',
-        description: 'Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.',
-        footer: '30% OFF',
-        footer2: 'limited offer',
-        expiry: '2:32:00'
-    },
-    {
-        id: '8',
-        title: 'Microsoft Surface Laptop 4 13" 15',
-        description: 'Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.',
-        footer: 'Price for 2',
-        footer2: 'limited offer',
-        expiry: '2:32:00'
-    },
-    {
-        id: '9',
-        title: 'Microsoft Surface Laptop 4 13" 15',
-        description: 'Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.Microsoft Surface Laptop 4 13" i5 | 8GB | 512GB | Standstone Free Upgrade.',
-        footer: 'Buy 1 get 1',
-        footer2: 'limited offer',
-        expiry: '2:32:00'
-    },
-];
-
-const Card = ({ item, setShowSearchBar }) => {
-    const image_source = require('../../assets/deal.png')
+import { width_screen } from '../../utils/dimensions'
+const avatar = [{ id: '0', logo: Booking, deal: '2 Deals' }, { id: '1', logo: Apple, deal: '8 Deals' }, { id: '2', logo: McDonald, deal: '9 Deals' }, { id: '3', logo: eclipse, deal: '4 Deals' }, { id: '4', logo: ComUniverse, deal: '2 Deals' }]
+const AllDeals = [{ id: '0', logo: Booking, deal: 'All', selected: true }, { id: '1', logo: Apple, deal: 'Electronics', selected: false }, { id: '2', logo: McDonald, deal: 'Beauty', selected: false }, { id: '3', logo: eclipse, deal: 'Travel', selected: false }, { id: '4', logo: ComUniverse, deal: 'Fashion', selected: false }]
+const Products = [{ id: '0', products: LaptopIcon, deal: 'All', selected: true }, { id: '1', products: LaptopIcon, deal: 'Electronics', selected: false }, { id: '2', products: LaptopIcon, deal: 'Beauty', selected: false }, { id: '3', products: LaptopIcon, deal: 'Travel', selected: false }, { id: '4', products: LaptopIcon, deal: 'Fashion', selected: false }]
+const index = () => {
+    const [value, setValue] = useState('')
     return (
-        <TouchableOpacity onPress={() => setShowSearchBar(true)} style={styles.card}>
-            <Image style={styles.image} resizeMode='contain' source={image_source} />
-            <View style={styles.content}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.description}>{item.description}</Text>
-            </View>
-            <View style={styles.footer_container}>
-                <Text style={styles.footer}>{item.footer}</Text>
-                <Text style={styles.footer2}>{item.footer2}</Text>
-                <Text style={styles.expiry}>{item.expiry}</Text>
-            </View>
-        </TouchableOpacity>
-    );
-};
-
-const Home = () => {
-    const [showSearchBar, setShowSearchBar] = useState(false)
-
-    return (
-        <>
-            <View style={{flexDirection:'row',marginTop:8,justifyContent:'space-between'}}>
-            <Text style={{ paddingLeft: 20 }}>
-                Filters
-            </Text>
-            <TouchableOpacity onPress={()=>navigate(ROUTES.BuyNow)}>
-            <Text style={{paddingRight:20}}>
-                Products
-            </Text>
-            </TouchableOpacity>
-            </View>
+        <ScrollView showsVerticalScrollIndicator={false} style={{ backgroundColor: '#FAFAFA' }}>
             <View style={styles.container}>
-                {showSearchBar &&
-                    <TouchableOpacity onPress={() => setShowSearchBar(false)} style={{ position: 'absolute', zIndex: 2, width: '100%', height: '100%', justifyContent: 'center' }}>
-                        <CustomTextInput placeHolderText={"What are you looking for?"} inputContainerStyle={{ borderRadius: 10, borderColor: 'red', borderWidth: 2, height: 50 }} />
-                    </TouchableOpacity>
-                }
-                <FlatList
-                    data={cards}
-                    renderItem={({ item }) => <Card item={item} setShowSearchBar={setShowSearchBar} />}
-                    keyExtractor={(item) => item.id}
-                    showsVerticalScrollIndicator={false}
-                />
+                <Text style={styles.greetingText}>
+                    Good Morning 👋
+                </Text>
+                <TouchableOpacity style={styles.headerIcons}>
+                    <Scan />
+                </TouchableOpacity>
+                <View style={styles.headerContainer}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 25, paddingLeft: 5 }}>
+                        <Text style={styles.Evan}>
+                            EVANS01
+                        </Text>
+                        <TouchableOpacity>
+                            <QR height={30} width={30} style={{ position: 'absolute', bottom: -20 }} />
+                        </TouchableOpacity>
+                    </View>
+                    <CustomTextInput
+                        onBlur={() => { return null }}
+                        placeHolderText={'What are you looking for?'}
+                        onChangeText={() => setValue(value)}
+                        containerStyle={styles.labelContainer}
+                        inputContainerStyle={styles.inputContainer}
+                        textStyle={{ paddingLeft: 15 }}
+                        isSecure={false}
+                        // value={value}
+                        leftIcon={<SearchIcon />}
+                        rightIcon={<Filter />}
+                    />
+                    <View style={{ width: width_screen * 0.95 }}>
+                        <CouponCard width={width_screen * 0.95} />
+                    </View>
+                    {/* list 1 */}
+                    <View style={styles.list1}>
+                        <Text style={styles.list1Text1}>
+                            Your Shops
+                        </Text>
+                        <TouchableOpacity>
+                            <Text style={styles.list1Text2}>
+                                See All
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                        {
+                            avatar.map((Item) => {
+                                return (
+                                    <View style={styles.list1Container}>
+                                        <Item.logo />
+                                        <View style={styles.list1text}>
+                                            <Text >
+                                                {Item.deal}
+                                            </Text>
+                                        </View>
+                                    </View>
+                                )
+                            })
+                        }
+                    </ScrollView>
+                    {/* list 2 */}
+                    <View style={{ marginTop: 10 }} />
+                    <View style={styles.list1}>
+                        <Text style={styles.list1Text1}>
+                            All Deals
+                        </Text>
+                        <TouchableOpacity>
+                            <Text style={styles.list1Text2}>
+                                See All
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                        {
+                            AllDeals.map((Item) => {
+                                return (
+                                    <View style={styles.list2Container}>
+                                        <View style={[styles.list2TextContainer, { backgroundColor: Item.selected ? Theme.appRed : Theme.white, }]}>
+                                            <Text style={[styles.list2Text, { color: Item.selected ? Theme.white : Theme.black }]}>
+                                                {Item.deal}
+                                            </Text>
+                                        </View>
+                                    </View>
+                                )
+                            })
+                        }
+                    </ScrollView>
+                </View>
+                <ScrollView showsVerticalScrollIndicator={false} style={{ marginBottom: 100 }}>
+                    {
+                        Products.map((item) => {
+                            return (
+                                <TouchableOpacity onPress={() => {
+                                    navigate(ROUTES.OpenProduct)
+                                }} style={styles.list3Container}>
+                                    <View style={{ height: 110, marginHorizontal: 10, width: '35%', borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: '#F3F3F3' }}>
+                                        <item.products />
+                                    </View>
+                                    <View style={styles.itemContainer}>
+                                        <Text style={styles.list3Text1}>
+                                            Microsoft laptop
+                                        </Text>
+                                        <Text numberOfLines={2} style={styles.list3Text2}>
+                                            sed do eiusmod tempor{'\n'}incididunt ut labore <Text style={{ fontWeight: '800', fontSize: 12, color: Theme.black }}>view more</Text>...
+                                        </Text>
+                                        <View style={styles.timeContainer}>
+                                            <MicrosoftIcon style={{ marginRight: 5 }} />
+                                            <Clock style={{ marginHorizontal: 5 }} />
+                                            <Text style={{ marginHorizontal: 5, color: Theme.black }}>
+                                                09:58:06
+                                            </Text>
+                                            <View style={styles.priceContainer}>
+                                                <Text style={{ color: '#058D13' }}>
+                                                    30£ OFF
+                                                </Text>
+                                            </View>
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                            )
+                        })
+                    }
+                </ScrollView>
             </View>
-        </>
-    );
-};
+        </ScrollView>
+    )
+}
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 16,
-    },
-    card: {
-        flexDirection: 'row',
-        width: CARD_WIDTH,
-        height: CARD_HEIGHT,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        marginBottom: 16,
-        paddingHorizontal: 4,
-        borderColor: Theme.grey,
-        borderWidth: 1,
-        borderRadius: 8,
-        shadowOffset: { width: -2, height: 4 },
-        shadowColor: '#171717',
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-    },
-    image: {
-        width: '25%',
-        height: '90%',
-        borderRadius: 8,
-        marginRight: 8,
-    },
-    content: {
-        justifyContent: 'center',
-        width: "53%"
-    },
-    title: {
-        fontWeight: 'bold',
-        fontSize: 10,
-        marginBottom: 4,
-    },
-    description: {
-        fontSize: 8,
-        color: '#666',
-    },
-    footer_container: {
-
-        height: 60,
-        width: '20%',
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 8
-    },
-    footer: {
-        fontSize: 12,
-        color: 'red',
-        fontWeight: 'bold'
-    },
-    footer2: {
-        fontSize: 8,
-        color: Theme.dark_orange,
-    },
-    expiry: {
-        fontSize: 10,
-        color: 'gold',
-    },
-});
-
-export default Home;
+export default index
